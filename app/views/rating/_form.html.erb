@@ -1,0 +1,5 @@
+<%= form_with(model: [ article, article.ratings.build ], local: true) do |form| %>
+  <%= form.label :rating %><br>
+  <%= form.number_field :score %>
+  <%= form.submit %>
+<% end %>
