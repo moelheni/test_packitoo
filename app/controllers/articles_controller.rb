@@ -5,6 +5,11 @@ class ArticlesController < ApplicationController
   def index
     @articles = Article.all
     @rating = Rating.new
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @articles.to_csv, filename: "articles-#{Date.today}.csv" }
+    end
   end
 
   # GET /articles/:id
@@ -45,7 +50,6 @@ class ArticlesController < ApplicationController
       render 'new'
     end
   end
-
 
   def destroy
     @article = Article.find(params[:id])

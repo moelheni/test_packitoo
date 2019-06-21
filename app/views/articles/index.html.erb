@@ -1,6 +1,7 @@
 <h1>Listing articles</h1>
 
 <%= link_to 'New article', new_article_path %>
+<%= link_to 'Export csv', articles_path({format: 'csv'}) %>
 
 <% if flash[:rating_errors] %>
   <div id="error_explanation">
