@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
   def index
     @articles = Article.all
   end
-  
+
   # GET /articles/:id
   def show
     @article = Article.find(params[:id])
@@ -11,16 +11,20 @@ class ArticlesController < ApplicationController
 
   # GET /articles/new
   def new
+    @article = Article.new
   end
 
   # POST /articles
   def create
     # create object from POST params
     @article = Article.new(article_params)
-    # save object to DB
-    @article.save
-    # redirect to the created article url
-    redirect_to @article
+
+    # validate & save object to DB
+    if @article.save
+      redirect_to @article
+    else
+      render 'new'
+    end
   end
 
   private
